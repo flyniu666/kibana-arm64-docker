@@ -88,9 +88,6 @@ LABEL org.label-schema.schema-version="1.0" org.label-schema.vendor="Elastic" or
 RUN groupadd --gid 1000 kibana && useradd --uid 1000 --gid 1000 --home-dir /usr/share/kibana --no-create-home kibana
 USER kibana
 
-RUN /usr/share/kibana/bin/kibana-plugin remove x-pack
-
-
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
 CMD ["/usr/local/bin/kibana-docker"]
