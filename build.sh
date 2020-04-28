@@ -1,16 +1,17 @@
 #!/bin/bash
 
-
+OSS="oss-"      
 KIBANA_VERSION=7.3.2
 
 
 rm -rf kibana
 rm -rf node
 
-if [ ! -f "kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz" ]; then
+if [ ! -f "kibana-${OSS}${KIBANA_VERSION}-linux-x86_64.tar.gz" ]; then
     wget https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
 fi
-tar zxvf kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
+
+tar zxvf kibana-${OSS}${KIBANA_VERSION}-linux-x86_64.tar.gz
 mv kibana-${KIBANA_VERSION}-linux-x86_64 kibana
 
 if [ ! -f "node-v10.15.2-linux-arm64.tar" ]; then
