@@ -3,10 +3,6 @@
 OSS="oss-"      
 KIBANA_VERSION=7.3.2
 
-
-rm -rf kibana
-rm -rf node
-
 if [ ! -f "kibana-${OSS}${KIBANA_VERSION}-linux-x86_64.tar.gz" ]; then
     wget https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
 fi
