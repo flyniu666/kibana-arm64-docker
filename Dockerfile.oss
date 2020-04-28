@@ -10,28 +10,8 @@ FROM centos:7 AS prep_files
 
 ADD kibana /usr/share/kibana
 
-RUN mkdir -p /usr/local/ssl/lib/
-COPY libcrypto.a /usr/local/ssl/lib/
-COPY libssl.a /usr/local/ssl/lib/
-COPY libcurl.a /usr/local/lib/ 
-
-
 ENV PATH=/usr/share/kibana/node/bin:$PATH
-RUN ls -l /usr/share/kibana/node/bin
-RUN npm -v
 
-
-RUN yum update -y && yum install -y gcc gcc-c++ make openssl-libs openssl-devel libstdc++ libstdc++-devel libstdc++-static 
-RUN rm -rf /usr/share/kibana/node_modules/@elastic/nodegit/build/Release/
-RUN chmod -R 777 /usr/share/kibana/node_modules/@elastic/nodegit/
-RUN cd /usr/share/kibana/node_modules/@elastic/nodegit/ \
-    && npm i -g npm@3.10.10 \
-    && npm i -f || true \
-    && npm reinstall || true \
-    && npm run install
-
-COPY enums.js  /usr/share/kibana/node_modules/@elastic/nodegit/dist/enums.js
-RUN yum clean all
 WORKDIR /usr/share/kibana
 
 

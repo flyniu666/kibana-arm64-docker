@@ -1,18 +1,19 @@
 #!/bin/bash
 
 
+OSS="oss-"
 KIBANA_VERSION=7.3.2
+
 
 
 rm -rf kibana
 rm -rf node
 
-if [ ! -f "kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz" ]; then
-    wget https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
+if [ ! -f "kibana-${OSS}${KIBANA_VERSION}-linux-x86_64.tar.gz" ]; then
+    wget https://artifacts.elastic.co/downloads/kibana/kibana-${OSS}${KIBANA_VERSION}-linux-x86_64.tar.gz
 fi
 
-
-tar zxvf kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz 
+tar zxvf kibana-${OSS}${KIBANA_VERSION}-linux-x86_64.tar.gz 
 mv kibana-${KIBANA_VERSION}-linux-x86_64 kibana
 
 
@@ -33,7 +34,7 @@ mv phantomjs kibana/node_modules/@elastic/nodegit
 rm -rf kibana/node
 mv node  kibana/
 
-docker build -t kibana:${KIBANA_VERSION} .
+docker build -t kibana-oss:${KIBANA_VERSION} . -f Dockerfile.oss
 
 rm -f node-v10.15.2-linux-arm64.tar
 rm -rf node
